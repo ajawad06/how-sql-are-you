@@ -25,6 +25,9 @@ const WelcomeScreen = ({ onStart }: WelcomeScreenProps) => {
             <span className="text-secondary">--</span> A silly quiz to determine your SQL mastery
           </p>
           <p className="text-muted-foreground mb-2">
+            <span className="text-secondary">--</span> 50 questions in the pool, 7 random each time
+          </p>
+          <p className="text-muted-foreground mb-2">
             <span className="text-secondary">--</span> 7 questions • 5 skill levels
           </p>
           <p className="text-muted-foreground">

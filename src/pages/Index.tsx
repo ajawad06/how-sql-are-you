@@ -2,7 +2,7 @@ import { useState } from "react";
 import WelcomeScreen from "@/components/WelcomeScreen";
 import QuizQuestion from "@/components/QuizQuestion";
 import ResultScreen from "@/components/ResultScreen";
-import { questions, getSQLLevel } from "@/data/quizData";
+import { Question, getShuffledQuestions, getSQLLevel, QUESTIONS_PER_QUIZ } from "@/data/quizData";
 
 type GameState = "welcome" | "quiz" | "result";
 
@@ -10,8 +10,10 @@ const Index = () => {
   const [gameState, setGameState] = useState<GameState>("welcome");
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
 
   const handleStart = () => {
+    setQuizQuestions(getShuffledQuestions());
     setGameState("quiz");
     setCurrentQuestionIndex(0);
     setScore(0);
@@ -22,7 +24,7 @@ const Index = () => {
       setScore(prev => prev + 1);
     }
 
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < quizQuestions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       setGameState("result");
@@ -33,6 +35,7 @@ const Index = () => {
     setGameState("welcome");
     setCurrentQuestionIndex(0);
     setScore(0);
+    setQuizQuestions([]);
   };
 
   return (
@@ -48,12 +51,12 @@ const Index = () => {
       <div className="relative z-10">
         {gameState === "welcome" && <WelcomeScreen onStart={handleStart} />}
         
-        {gameState === "quiz" && (
+        {gameState === "quiz" && quizQuestions.length > 0 && (
           <QuizQuestion
             key={currentQuestionIndex}
-            question={questions[currentQuestionIndex]}
+            question={quizQuestions[currentQuestionIndex]}
             currentIndex={currentQuestionIndex}
-            totalQuestions={questions.length}
+            totalQuestions={quizQuestions.length}
             onAnswer={handleAnswer}
           />
         )}
