@@ -1,4 +1,4 @@
-import { SQLLevel, questions } from "@/data/quizData";
+import { SQLLevel, QUESTIONS_PER_QUIZ } from "@/data/quizData";
 import { Button } from "@/components/ui/button";
 
 interface ResultScreenProps {
@@ -8,7 +8,7 @@ interface ResultScreenProps {
 }
 
 const ResultScreen = ({ score, level, onRestart }: ResultScreenProps) => {
-  const percentage = Math.round((score / questions.length) * 100);
+  const percentage = Math.round((score / QUESTIONS_PER_QUIZ) * 100);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6">
@@ -38,7 +38,7 @@ const ResultScreen = ({ score, level, onRestart }: ResultScreenProps) => {
             </div>
             <div className="text-4xl text-muted-foreground">/</div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-muted-foreground font-mono">{questions.length}</div>
+              <div className="text-4xl font-bold text-muted-foreground font-mono">{QUESTIONS_PER_QUIZ}</div>
               <div className="text-sm text-muted-foreground font-mono">total</div>
             </div>
           </div>
