@@ -18,5 +18,5 @@
 3. View your final SQL savvy score.
 
 ## ⛏️ Development
-This project was created by providing Lovable a natural‑language description of the desired quiz functionality. Lovable generated both frontend and backend code.
+This project was created by providing Lovable a natural‑language description of the desired quiz functionality.
 
